@@ -1,0 +1,14 @@
+fpath=(~/.zsh $fpath)
+
+if type brew &>/dev/null; then
+  FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
+
+  autoload -Uz compinit
+  compinit
+fi
+
+export PATH="${HOME}/.gem/ruby/2.6.0/bin:${PATH}"
+
+if [ $TERM_PROGRAM != "vscode" ]; then
+  eval "$(oh-my-posh init zsh  --config ~/.current.omp.json)"
+fi
