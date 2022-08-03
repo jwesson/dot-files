@@ -1,5 +1,10 @@
-fpath=(~/.zsh $fpath)
+# env variables
+export EDITOR="code -w"
+# Puts homebrew binaries at the front of the system PATH.
+export PATH=$(brew --prefix)/bin:$PATH
 
+
+# completions
 if type brew &>/dev/null; then
   FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
 
@@ -7,8 +12,14 @@ if type brew &>/dev/null; then
   compinit
 fi
 
-export PATH="${HOME}/.gem/ruby/2.6.0/bin:${PATH}"
 
+# aliases
+# git shortcuts
+alias update="git fetch --prune && git pull"
+alias update_to_main="git checkout main && git fetch --prune && git pull && git checkout -"
+
+
+# prompt
 if [ $TERM_PROGRAM != "vscode" ]; then
-  eval "$(oh-my-posh init zsh  --config ~/.current.omp.json)"
+  eval "$(oh-my-posh init zsh --config ~/.current.omp.json)"
 fi
